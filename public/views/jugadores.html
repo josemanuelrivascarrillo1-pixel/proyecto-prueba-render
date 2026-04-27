@@ -1,0 +1,59 @@
+<div class="alert alert-primary mt-4 container text-center">
+    <h2>Gestión de Jugadores</h2>
+</div>
+
+
+<!-- Botones de acción -->
+<div class="container mb-3 text-end">
+    <button class="btn btn-success" onclick="mostrarFormulario()">Crear Jugador</button>
+    <button class="btn btn-secondary d-none" id="btnCancelar" onclick="mostrarTabla()">Cancelar</button>
+</div>
+
+
+<!-- FORMULARIO para crear/editar jugadores -->
+<div class="container d-none" id="contenedorFormulario">
+    <form id="formJugador">
+        <!-- Campo oculto para el ID al editar -->
+        <input type="hidden" id="pk_jugador">
+
+
+        <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <input type="text" id="nombre" class="form-control" required>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">Apellido</label>
+            <input type="text" id="apellido" class="form-control" required>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">Edad</label>
+            <input type="number" id="edad" class="form-control" min="1" placeholder="Ej: 23">
+        </div>
+
+
+        <button type="submit" class="btn btn-success w-100">Guardar Jugador</button>
+    </form>
+</div>
+
+
+<!-- TABLA para listar jugadores -->
+<div class="container mt-4" id="contenedorTabla">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="tablaJugadores"></tbody>
+    </table>
+    <!-- Contenedor para la paginación -->
+    <div id="footer-paginacion"></div>
+</div>

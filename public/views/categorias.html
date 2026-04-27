@@ -1,0 +1,41 @@
+<div class="alert alert-primary mt-4 container text-center">
+    <h2>Gestión de categotias</h2>
+</div>
+
+<!-- Botones de acción -->
+<div class="container mb-3 text-end">
+    <button class="btn btn-success" onclick="mostrarFormulario()">Crear categorias</button>
+    <button class="btn btn-secondary d-none" id="btnCancelar" onclick="mostrarTabla()">Cancelar</button>
+</div>
+
+<!-- FORMULARIO para crear/editar categotias -->
+<div class="container d-none" id="contenedorFormulario">
+    <form id="formCategorias">
+        <!-- Campo oculto para el ID al editar -->
+        <input type="hidden" id="pk_categoria">
+
+        <div class="mb-3">
+            <label class="form-label">Nombre Completo</label>
+            <input type="text" id="nombre" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Guardar categoria</button>
+    </form>
+</div>
+
+<!-- TABLA para listar categotias -->
+<div class="container mt-4" id="contenedorTabla">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Fecha_registro</th>
+                <th>estado</th>
+            </tr>
+        </thead>
+        <tbody id="tablacategorias"></tbody>
+    </table>
+    <!-- Contenedor para la paginación -->
+    <div id="footer-paginacion"></div>
+</div>
