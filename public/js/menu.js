@@ -9,7 +9,8 @@ const modulos = {
     jugadores: 'jugadores',
     categorias: 'categorias',
     domicilios: 'domicilios',
-    computadora: 'computadora'
+    computadora: 'computadora',
+    gastos: 'gastos'
 };
 
 
