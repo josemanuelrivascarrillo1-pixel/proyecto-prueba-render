@@ -10,17 +10,27 @@
 </head>
 <body>
 <header>
-<h2>Sistema Monolítico JS</h2>
-<nav>
-<button onclick="cargarVista('inicio')">Inicio</button>
 
- <button onclick="cargarVista('clientes')">Clientes</button>     
- <button onclick="cargarVista('jugadores')">Jugadores</button>  
- <button onclick="cargarVista('categorias')">categorias</button> 
- <button onclick="cargarVista('domicilios')">domicilios</button>  
- <button onclick="cargarVista('computadora')">computadora</button>  
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <div onclick="cargarVista('inicio')" class="logo">
+        <div class="logo-icon">$</div>
+        GastosPro
+      </div>
+      <ul class="nav-links">
+        <a onclick="cargarVista('clientes')">Clientes</a>     
+        <a onclick="cargarVista('categorias')">categorias</a> 
+        <a onclick="cargarVista('domicilios')">domicilios</a>  
+        <a onclick="cargarVista('computadora')">computadora</a>  
+        <a onclick="cargarVista('gastos')">gastos</a>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn-nav-ghost">Iniciar sesión</button>
+        <button class="btn-nav-primary">Registrarse</button>
+      </div>
+    </div>
+  </nav>
 
-</nav>
 </header>
 
 

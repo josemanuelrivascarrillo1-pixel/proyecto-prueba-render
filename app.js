@@ -20,6 +20,7 @@ app.use('/domicilios', require('./routes/domicilios.routes'));
 app.use('/computadora', require('./routes/computadora.routes'));
 app.use('/videojuegos', require('./routes/videojuegos.routes'));
 app.use('/comida', require('./routes/comida.routes'));
+app.use('/gastos', require('./routes/gastos.routes'));
 
 app.listen(3000, () => {
 console.log('Servidor en http://localhost:3000');
