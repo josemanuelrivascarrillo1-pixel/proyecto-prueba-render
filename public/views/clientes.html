@@ -2,63 +2,72 @@
      VISTA: clientes.html
      Descripción: Interfaz para gestionar clientes
      ============================================ -->
+<link rel="stylesheet" href="/css/estilos.css">
 
-<div class="alert alert-info mt-4 container text-center">
-    <h2>Gestión de Clientes</h2>
-</div>
-
-<!-- Botones de acción -->
-<div class="container mb-3 text-end">
-    <button class="btn btn-success" onclick="mostrarFormulario()">Crear Cliente</button>
-    <button class="btn btn-secondary d-none" id="btnCancelar" onclick="mostrarTabla()">Cancelar</button>
+<!-- Header -->
+<div class="gp-page-header container mt-4">
+  <h2 class="gp-page-title">Gestión de Clientes</h2>
+  <div class="gp-header-actions">
+    <button class="gp-btn-crear" onclick="mostrarFormulario()">+ Crear Cliente</button>
+    <button class="gp-btn-cancelar d-none" id="btnCancelar" onclick="mostrarTabla()">✕ Cancelar</button>
+  </div>
 </div>
 
 <!-- FORMULARIO para crear/editar clientes -->
-<div class="container d-none" id="contenedorFormulario">
-    <form id="formCliente">
-        <!-- Campo oculto para el ID al editar -->
-        <input type="hidden" id="pk_cliente">
+<div class="container d-none gp-form-card" id="contenedorFormulario">
+  <form id="formCliente">
+    <input type="hidden" id="pk_cliente">
 
-        <div class="mb-3">
-            <label class="form-label">Nombre Completo</label>
-            <input type="text" id="nombre" class="form-control" required>
-        </div>
+    <div class="gp-form-grid">
+      <div class="mb-3">
+        <label class="gp-label">Nombre Completo</label>
+        <input type="text" id="nombre" class="gp-input" required placeholder="Ej: Juan García">
+      </div>
 
-        <div class="mb-3">
-            <label class="form-label">Email</label>
-            <input type="email" id="email" class="form-control" required>
-        </div>
+      <div class="mb-3">
+        <label class="gp-label">Email</label>
+        <input type="email" id="email" class="gp-input" required placeholder="correo@ejemplo.com">
+      </div>
 
-        <div class="mb-3">
-            <label class="form-label">Teléfono</label>
-            <input type="text" id="telefono" class="form-control" placeholder="Ej: 3111234567">
-        </div>
+      <div class="mb-3">
+        <label class="gp-label">Teléfono</label>
+        <input type="text" id="telefono" class="gp-input" placeholder="Ej: 3111234567">
+      </div>
 
-        <div class="mb-3">
-            <label class="form-label">Dirección</label>
-            <textarea id="direccion" class="form-control" rows="2"></textarea>
-        </div>
+      <div class="mb-3">
+        <label class="gp-label">Dirección</label>
+        <textarea id="direccion" class="gp-input" rows="2" placeholder="Calle, ciudad..."></textarea>
+      </div>
+    </div>
 
-        <button type="submit" class="btn btn-success w-100">Guardar Cliente</button>
-    </form>
+    <button type="submit" class="gp-btn-submit">Guardar Cliente</button>
+  </form>
 </div>
 
 <!-- TABLA para listar clientes -->
 <div class="container mt-4" id="contenedorTabla">
-    <table class="table table-striped">
+
+  <div class="gp-table-header">
+    <span class="gp-table-subtitle">Lista de clientes registrados</span>
+  </div>
+
+  <div class="gp-card">
+    <div class="table-responsive">
+      <table class="table gp-table mb-0">
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Email</th>
-                <th>Teléfono</th>
-                <th>Dirección</th>
-                <th>Acciones</th>
-            </tr>
-            <link rel="stylesheet" href="/css/estilos.css">
+          <tr>
+            <th style="width:50px">#</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Dirección</th>
+            <th style="width:150px">Acciones</th>
+          </tr>
         </thead>
         <tbody id="tablaClientes"></tbody>
-    </table>
-    <!-- Contenedor para la paginación -->
-    <div id="footer-paginacion"></div>
+      </table>
+    </div>
+    <div class="gp-footer-paginacion" id="footer-paginacion" placeholder="1"></div>
+  </div>
+
 </div>

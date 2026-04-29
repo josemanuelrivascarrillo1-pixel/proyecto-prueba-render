@@ -44,18 +44,15 @@ setTimeout(() => {
         });
     }
 
-    // ========== LISTAR CLIENTES ==========
-    async function listar() {
-        if (!tabla) return; // Verificar que la tabla exista
+async function listar() {
+    if (!tabla) return;
 
-        // Hacer petición GET al backend
+    try {
         const res = await fetch('/categorias');
         const data = await res.json();
 
-        // Limpiar contenido anterior de la tabla
         tabla.innerHTML = '';
 
-        // Iterar sobre cada categoria y crear una fila
         data.forEach(c => {
             tabla.innerHTML += `
                 <tr>
@@ -81,22 +78,23 @@ setTimeout(() => {
             `;
         });
 
-        // Cargar el footer de paginación y luego inicializarla
         const footer = document.getElementById('footer-paginacion');
         if (footer) {
             const resFooter = await fetch('/views/partials/footer-table.html');
             footer.innerHTML = await resFooter.text();
-            
-            // Esperar un momento para que el DOM se actualice
+
             await new Promise(resolve => setTimeout(resolve, 10));
-            
-            // Inicializar paginación
+
             initPaginacion({
-                tbodyId: 'tablaCategorias',
+                tbodyId: 'tablaGastos',
                 filasPorPagina: 10
             });
         }
+
+    } catch (error) {
+        console.error('Error listando:', error);
     }
+}
 
     // ========== EDITAR CLIENTE ==========
     // Función global para cargar datos en el formulario

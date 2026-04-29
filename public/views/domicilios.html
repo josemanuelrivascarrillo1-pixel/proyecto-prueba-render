@@ -1,48 +1,69 @@
-<div class="alert alert-primary mt-4 container text-center">
-    <h2>Gestión de Dolicilios</h2>
+<!-- ============================================
+     VISTA: domicilios.html
+     Descripción: Interfaz para gestionar domicilios
+     ============================================ -->
+<link rel="stylesheet" href="/css/estilos.css">
+
+<!-- Header -->
+<div class="gp-page-header container mt-4">
+  <h2 class="gp-page-title">Gestión de Domicilios</h2>
+  <div class="gp-header-actions">
+    <button class="gp-btn-crear" onclick="mostrarFormulario()">+ Crear Domicilio</button>
+    <button class="gp-btn-cancelar d-none" id="btnCancelar" onclick="mostrarTabla()">✕ Cancelar</button>
+  </div>
 </div>
 
-<!-- Botones de acción -->
-<div class="container mb-3 text-end">
-    <button class="btn btn-success" onclick="mostrarFormulario()">Crear Domicilio</button>
-    <button class="btn btn-secondary d-none" id="btnCancelar" onclick="mostrarTabla()">Cancelar</button>
+<!-- FORMULARIO -->
+<div class="container d-none gp-form-card" id="contenedorFormulario">
+  <form id="formDomicilios">
+
+    <input type="hidden" id="pk_domicilio">
+
+    <div class="gp-form-grid">
+
+      <div class="mb-3">
+        <label class="gp-label">Calle</label>
+        <input type="text" id="nombre" class="gp-input" required placeholder="Ej: Av. México">
+      </div>
+
+      <div class="mb-3">
+        <label class="gp-label">Número</label>
+        <input type="text" id="num" class="gp-input" required placeholder="Ej: 123">
+      </div>
+
+    </div>
+
+    <button type="submit" class="gp-btn-submit">Guardar Domicilio</button>
+  </form>
 </div>
 
-<!-- FORMULARIO para crear/editar categotias -->
-<div class="container d-none" id="contenedorFormulario">
-    <form id="formDomicilios">
-        <!-- Campo oculto para el ID al editar -->
-        <input type="hidden" id="pk_domicilio">
-
-        <div class="mb-3">
-            <label class="form-label">Nombre Calle</label>
-            <input type="text" id="nombre" class="form-control" required>
-        </div>
-
-         <div class="mb-3">
-            <label class="form-label">Numero de domicilio</label>
-            <input type="text" id="num" class="form-control" required>
-        </div>
-
-        <button type="submit">Guardar domicilio</button>
-    </form>
-</div>
-
-<!-- TABLA para listar categotias -->
+<!-- TABLA -->
 <div class="container mt-4" id="contenedorTabla">
-    <table class="table table-striped">
+
+  <div class="gp-table-header">
+    <span class="gp-table-subtitle">Lista de domicilios registrados</span>
+  </div>
+
+  <div class="gp-card">
+    <div class="table-responsive">
+      <table class="table gp-table mb-0">
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Numero</th>
-                <th>Fecha_registro</th>
-                <th>estado</th>
-            </tr>
-            <link rel="stylesheet" href="../css/estilos.css">
+          <tr>
+            <th style="width:60px">#</th>
+            <th>Calle</th>
+            <th>Número</th>
+            <th>Fecha Registro</th>
+            <th>Estado</th>
+            <th style="width:150px">Acciones</th>
+          </tr>
         </thead>
+
+        <!-- ⚠️ ID original intacto -->
         <tbody id="tablaDomicilios"></tbody>
-    </table>
-    <!-- Contenedor para la paginación -->
-    <div id="footer-paginacion"></div>
+      </table>
+    </div>
+
+    <div class="gp-footer-paginacion" id="footer-paginacion"></div>
+  </div>
+
 </div>

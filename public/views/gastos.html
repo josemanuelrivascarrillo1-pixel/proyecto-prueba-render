@@ -1,69 +1,93 @@
-<div class="alert alert-primary mt-4 container text-center">
-    <h2>Gestión de Gastos</h2>
-</div>
-
-<!-- Botones -->
-<div class="container mb-3 text-end">
-    <button class="btn btn-success" onclick="mostrarFormulario()">Crear Gasto</button>
-    <button class="btn btn-secondary d-none" id="btnCancelar" onclick="mostrarTabla()">Cancelar</button>
+<!-- ============================================
+     VISTA: gastos.html
+     Descripción: Interfaz para gestionar gastos
+     ============================================ -->
+<link rel="stylesheet" href="/css/estilos.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Header -->
+<div class="gp-page-header container mt-4">
+  <h2 class="gp-page-title">Gestión de Gastos</h2>
+  <div class="gp-header-actions">
+    <button class="gp-btn-crear" onclick="mostrarFormulario()">+ Crear Gasto</button>
+    <button class="gp-btn-cancelar d-none" id="btnCancelar" onclick="mostrarTabla()">✕ Cancelar</button>
+  </div>
 </div>
 
 <!-- FORMULARIO -->
-<div class="container d-none" id="contenedorFormulario">
-    <form id="formGasto">
+<div class="container d-none gp-form-card" id="contenedorFormulario">
+  <form id="formGasto">
 
-        <input type="hidden" id="pk_gasto">
+    <input type="hidden" id="pk_gasto">
 
-        <div class="mb-3">
-            <label class="form-label">Nombre del gasto</label>
-            <input type="text" id="nombre" class="form-control" required>
-        </div>
+    <div class="gp-form-grid">
 
-        <div class="mb-3">
-            <label class="form-label">Monto</label>
-            <input type="number" id="monto" class="form-control" step="0.01" required>
-        </div>
+      <div class="mb-3">
+        <label class="gp-label">Nombre del gasto</label>
+        <input type="text" id="nombre" class="gp-input" required placeholder="Ej: Compra de insumos">
+      </div>
 
-        <div class="mb-3">
-            <label class="form-label">Descuento (%)</label>
-            <input type="number" id="descuento" class="form-control" step="0.01" placeholder="Opcional">
-        </div>
+      <div class="mb-3">
+        <label class="gp-label">Monto</label>
+        <input type="number" id="monto" class="gp-input" step="0.01" required>
+      </div>
 
-        <div class="mb-3">
-            <label class="form-label">Fecha</label>
-            <input type="date" id="fecha" class="form-control" required>
-        </div>
+      <div class="mb-3">
+        <label class="gp-label">Descuento (%)</label>
+        <input type="number" id="descuento" class="gp-input" step="0.01" placeholder="Opcional">
+      </div>
 
-        <div class="mb-3">
-            <label class="form-label">Categoría</label>
-            <select id="fk_categoria" class="form-control">
-                <option value="">Seleccionar categoría</option>
-                <!-- Aquí puedes cargar categorías dinámicamente -->
-            </select>
-        </div>
+      <div class="mb-3">
+        <label class="gp-label">Total</label>
+        <input type="number" id="total" class="gp-input" step="0.01" readonly>
+      </div>
 
-        <button type="submit" class="btn btn-success w-100">Guardar Gasto</button>
-    </form>
+      <div class="mb-3">
+        <label class="gp-label">Fecha</label>
+        <input type="date" id="fecha" class="gp-input" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="gp-label">Categoría</label>
+        <select id="fk_categoria" class="gp-input">
+          <option value="">Seleccionar categoría</option>
+          <!-- Se llena con JS -->
+        </select>
+      </div>
+
+    </div>
+
+    <button type="submit" class="gp-btn-submit">Guardar Gasto</button>
+  </form>
 </div>
 
 <!-- TABLA -->
 <div class="container mt-4" id="contenedorTabla">
-    <table class="table table-striped">
+
+  <div class="gp-table-header">
+    <span class="gp-table-subtitle">Lista de gastos registrados</span>
+  </div>
+
+  <div class="gp-card">
+    <div class="table-responsive">
+      <table class="table gp-table mb-0">
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Monto</th>
-                <th>Descuento</th>
-                <th>Total</th>
-                <th>Fecha</th>
-                <th>Categoría</th>
-                <th>Acciones</th>
-            </tr>
-            <link rel="stylesheet" href="../css/estilos.css">
+          <tr>
+            <th style="width:60px">#</th>
+            <th>Nombre</th>
+            <th>Monto</th>
+            <th>Descuento</th>
+            <th>Total</th>
+            <th>Fecha</th>
+            <th>Categoría</th>
+            <th style="width:150px">Acciones</th>
+          </tr>
         </thead>
         <tbody id="tablaGastos"></tbody>
-    </table>
+      </table>
+    </div>
 
-    <div id="footer-paginacion"></div>
+    <!-- Paginación -->
+    <div class="gp-footer-paginacion" id="footer-paginacion" placeholder=" 1"></div>
+  </div>
+
 </div>

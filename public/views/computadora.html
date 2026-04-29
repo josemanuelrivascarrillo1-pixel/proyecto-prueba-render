@@ -1,54 +1,75 @@
-<div class="alert alert-primary mt-4 container text-center">
-    <h2>Gestión de computadora</h2>
+<!-- ============================================
+     VISTA: computadora.html
+     Descripción: Interfaz para gestionar computadoras
+     ============================================ -->
+<link rel="stylesheet" href="/css/estilos.css">
+
+<!-- Header -->
+<div class="gp-page-header container mt-4">
+  <h2 class="gp-page-title">Gestión de Computadoras</h2>
+  <div class="gp-header-actions">
+    <button class="gp-btn-crear" onclick="mostrarFormulario()">+ Crear Computadora</button>
+    <button class="gp-btn-cancelar d-none" id="btnCancelar" onclick="mostrarTabla()">✕ Cancelar</button>
+  </div>
 </div>
 
-<!-- Botones de acción -->
-<div class="container mb-3 text-end">
-    <button class="btn btn-success" onclick="mostrarFormulario()">Crear computadora</button>
-    <button class="btn btn-secondary d-none" id="btnCancelar" onclick="mostrarTabla()">Cancelar</button>
+<!-- FORMULARIO -->
+<div class="container d-none gp-form-card" id="contenedorFormulario">
+  <form id="formComputadora">
+
+    <input type="hidden" id="pk_computadora">
+
+    <div class="gp-form-grid">
+
+      <div class="mb-3">
+        <label class="gp-label">Nombre</label>
+        <input type="text" id="nombre" class="gp-input" required placeholder="Ej: Laptop Gamer">
+      </div>
+
+      <div class="mb-3">
+        <label class="gp-label">Precio</label>
+        <input type="number" id="precio" class="gp-input" step="0.01" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="gp-label">Marca</label>
+        <input type="text" id="marca" class="gp-input" required placeholder="Ej: HP, Lenovo...">
+      </div>
+
+    </div>
+
+    <button type="submit" class="gp-btn-submit">Guardar Computadora</button>
+  </form>
 </div>
 
-<!-- FORMULARIO para crear/editar computadora -->
-<div class="container d-none" id="contenedorFormulario">
-    <form id="formComputadora">
-        <!-- Campo oculto para el ID al editar -->
-        <input type="hidden" id="pk_computadora">
-
-        <div class="mb-3">
-            <label class="form-label">Nombre </label>
-            <input type="text" id="nombre" class="form-control" required>
-        </div>
-
-         <div class="mb-3">
-            <label class="form-label">precio</label>
-            <input type="text" id="precio" class="form-control" required>
-        </div>
-
-         <div class="mb-3">
-            <label class="form-label">marca</label>
-            <input type="text" id="marca" class="form-control" required>
-        </div>
-
-        <button type="submit">Guardar computadora</button>
-    </form>
-</div>
-
-<!-- TABLA para listar computadora -->
+<!-- TABLA -->
 <div class="container mt-4" id="contenedorTabla">
-    <table class="table table-striped">
+
+  <div class="gp-table-header">
+    <span class="gp-table-subtitle">Lista de computadoras registradas</span>
+  </div>
+
+  <div class="gp-card">
+    <div class="table-responsive">
+      <table class="table gp-table mb-0">
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>precio</th>
-                <th>marca</th> 
-                <th>Fecha_registro</th>
-                <th>estado</th>
-            </tr>
-            <link rel="stylesheet" href="../css/estilos.css">
+          <tr>
+            <th style="width:60px">#</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Marca</th>
+            <th>Fecha Registro</th>
+            <th>Estado</th>
+            <th style="width:150px">Acciones</th>
+          </tr>
         </thead>
+
+        <!-- ⚠️ IMPORTANTE: dejo tu ID igual -->
         <tbody id="tablaComputadora"></tbody>
-    </table>
-    <!-- Contenedor para la paginación -->
-    <div id="footer-paginacion"></div>
+      </table>
+    </div>
+
+    <div class="gp-footer-paginacion" id="footer-paginacion"></div>
+  </div>
+
 </div>
