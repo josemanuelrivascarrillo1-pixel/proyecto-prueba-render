@@ -1,44 +1,79 @@
-const Conexion = require('../config/conexion'); // Importa la conexión a PostgreSQL
+const Conexion = require('../config/conexion');
 
 module.exports = {
-    // Crear un nuevo gasto
+
+    // Crear
     crear: (data) => Conexion.query(
-    `INSERT INTO gastos(nombre, monto, descuento, total, fecha, fk_categoria) 
-     VALUES($1, $2, $3, $4, $5, $6)`,
-    [data.nombre, data.monto, data.descuento || 0, data.total, data.fecha, data.fk_categoria || null
-    ]
-),
-
-    // Listar todos los gastos activos (estado = 1)
-    listar: () => Conexion.query(
-        'SELECT * FROM gastos WHERE estado = 1 ORDER BY pk_gasto ASC'
+        `INSERT INTO gastos(nombre, monto, descuento, total, fecha, fk_categoria) 
+         VALUES($1, $2, $3, $4, $5, $6)`,
+        [
+            data.nombre,
+            data.monto,
+            data.descuento || 0,
+            data.total,
+            data.fecha,
+            data.fk_categoria || null
+        ]
     ),
 
-    // Obtener un gasto por su ID (necesario para el select en pedidos)
-    obtenerPorId: (id) => Conexion.query(
-        'SELECT * FROM gastos WHERE pk_gasto = $1 AND estado = 1',
-        [id]
-    ),
+    // 🔥 LISTAR DINÁMICO (ACTIVOS / INACTIVOS)
+    listar: (estado = 1) => Conexion.query(`
+        SELECT 
+            g.pk_gasto,
+            g.nombre,
+            g.monto,
+            g.descuento,
+            g.total,
+            g.fecha,
+            g.estado,
+            g.fk_categoria,
+            c.nombre AS categoria_nombre
+        FROM gastos g
+        LEFT JOIN categorias c
+            ON g.fk_categoria = c.pk_categoria
+        WHERE g.estado = $1
+        ORDER BY g.pk_gasto ASC
+    `, [estado]),
 
-    // Actualizar datos de un gasto
+    // Obtener por ID
+    obtenerPorId: (id) => Conexion.query(`
+        SELECT 
+            g.*, 
+            c.nombre AS categoria_nombre
+        FROM gastos g
+        LEFT JOIN categorias c
+            ON g.fk_categoria = c.pk_categoria
+        WHERE g.pk_gasto = $1
+    `, [id]),
+
+    // Actualizar
     actualizar: (id, data) => {
-    const descuento = data.descuento || 0;
-    const total = data.monto - (data.monto * descuento / 100);
+        const descuento = data.descuento || 0;
+        const total = data.monto - (data.monto * descuento / 100);
 
-    return Conexion.query(
-        `UPDATE gastos 
-         SET nombre=$1, monto=$2, descuento=$3, total=$4, fecha=$5, fk_categoria=$6 WHERE pk_gasto=$7`,
-        [data.nombre,data.monto,descuento,total,data.fecha,data.fk_categoria || null, id]);
-},
+        return Conexion.query(
+            `UPDATE gastos 
+             SET nombre=$1, monto=$2, descuento=$3, total=$4, fecha=$5, fk_categoria=$6 
+             WHERE pk_gasto=$7`,
+            [
+                data.nombre,
+                data.monto,
+                descuento,
+                total,
+                data.fecha,
+                data.fk_categoria || null,
+                id
+            ]
+        );
+    },
 
-    // Desactivar gasto (soft delete - cambiar estado a 0)
+    // Soft delete
     desactivar: (id) => Conexion.query(
         'UPDATE gastos SET estado=0 WHERE pk_gasto=$1',
         [id]
     ),
 
-    // Eliminar gasto permanentemente (hard delete)
-    // NOTA: Fallará si tiene pedidos asociados por la FK RESTRICT
+    // Hard delete
     desaparecer: (id) => Conexion.query(
         'DELETE FROM gastos WHERE pk_gasto=$1',
         [id]

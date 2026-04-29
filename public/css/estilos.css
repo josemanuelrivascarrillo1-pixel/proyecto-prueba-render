@@ -40,35 +40,11 @@ input:focus, select:focus {
   box-shadow: 0 0 0 2px rgba(26,26,46,0.1) !important;
 }
 
-/* BOTONES */
-.btn-success {
-  background: #1a1a2e;
-  border: none;
-}
 
-.btn-success:hover {
-  opacity: 0.9;
-}
-
-.btn-warning {
-  background: #3498db;
-  border: none;
-  color: white;
-}
-
-.btn-secondary {
-  background: #f39c12;
-  border: none;
-}
-
-.btn-danger {
-  background: #e74c3c;
-  border: none;
-}
 
 /* TABLA */
 .table {
-  border-radius: 12px;
+  border-radius: 25px;
   overflow: hidden;
 }
 
@@ -164,13 +140,14 @@ td button {
  
     /* ── NAVBAR ── */
     .navbar {
-      position: sticky;
+      position: relative;
       top: 0;
-      z-index: 100;
+      z-index: 300;
       background: rgba(255,255,255,0.88);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 0 40px;
+      margin-left: 340px;
     }
     .navbar-inner {
       max-width: 1100px;
@@ -202,7 +179,7 @@ td button {
       color: #fff;
       font-size: 17px;
       font-weight: 700;
-       margin-left: -550px;
+       margin-left: -340px;
     }
    .nav-links {
       display: flex;
@@ -220,7 +197,7 @@ td button {
       transition: color .2s;
     }
     .nav-links a:hover { color: var(--blue-600); }
-    .nav-actions { display: flex; gap: 10px; margin-left: 15px; }
+    .nav-actions { display: flex; gap: 10px; margin-left: 15px; margin-left: 150px; }
     .btn-nav-ghost {
       background: none;
       border: 1px solid var(--border);
@@ -550,3 +527,273 @@ td button {
       .cta-bar { flex-direction: column; align-items: flex-start; }
       .footer { flex-direction: column; gap: 12px; }
     }
+
+    /* ══════════════════════════════
+   PAGE HEADER
+══════════════════════════════ */
+.gp-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1a2a4a;
+  border-radius: 12px;
+  padding: 1.1rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.gp-page-title {
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.gp-header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.gp-btn-crear {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.gp-btn-crear:hover {
+  background: #1d4ed8;
+}
+
+.gp-btn-cancelar {
+  background: transparent;
+  color: #fca5a5;
+  border: 1px solid #fca5a5;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.gp-btn-cancelar:hover {
+  background: #fee2e2;
+  color: #991b1b;
+  border-color: #f87171;
+}
+
+/* ══════════════════════════════
+   FORMULARIO
+══════════════════════════════ */
+.gp-form-card {
+  background: #fff;
+  border: 0.5px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.gp-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 1.5rem;
+}
+
+.gp-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 5px;
+}
+
+.gp-input {
+  width: 100%;
+  border: 0.5px solid #d1d5db;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 13.5px;
+  color: #111827;
+  background: #f9fafb;
+  transition: border 0.15s, box-shadow 0.15s;
+  outline: none;
+  resize: none;
+}
+
+.gp-input:focus {
+  border-color: #2563eb;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.gp-btn-submit {
+  width: 100%;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.15s;
+}
+
+.gp-btn-submit:hover {
+  background: #1d4ed8;
+}
+
+/* ══════════════════════════════
+   TABLA HEADER
+══════════════════════════════ */
+.gp-table-header {
+  background: #1a2a4a;
+  border-radius: 12px 12px 0 0;
+  padding: 0.8rem 1.5rem;
+}
+
+.gp-table-subtitle {
+  color: #93c5fd;
+  font-size: 12px;
+}
+
+/* ══════════════════════════════
+   CARD + TABLA
+══════════════════════════════ */
+.gp-card {
+  background: #fff;
+  border: 0.5px solid #e5e7eb;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+}
+
+.gp-table thead tr {
+  background: #f8fafc;
+}
+
+.gp-table thead th {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+  padding: 10px 14px;
+  border-bottom: 1px solid #e5e7eb;
+  border-top: none;
+}
+
+.gp-table tbody td {
+  padding: 11px 14px;
+  font-size: 13.5px;
+  color: #111827;
+  vertical-align: middle;
+  border-bottom: 0.5px solid #f3f4f6;
+}
+
+.gp-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.gp-table tbody tr:hover td {
+  background: #f0f6ff;
+}
+
+.gp-table tbody td:first-child {
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+/* ══════════════════════════════
+   BOTONES DE ACCIÓN (en filas JS)
+══════════════════════════════ */
+.btn-editar {
+  background: #fef9c3;
+  color: #854d0e;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 11px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-right: 4px;
+  transition: background 0.15s;
+}
+
+.btn-editar:hover { background: #fef08a; }
+
+.btn-eliminar {
+  background: #fee2e2;
+  color: #991b1b;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 11px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-eliminar:hover { background: #fecaca; }
+
+/* ══════════════════════════════
+   PAGINACIÓN
+══════════════════════════════ */
+.gp-footer-paginacion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: #f8fafc;
+  border-top: 0.5px solid #e5e7eb;
+  font-size: 12px;
+  color: #6b7280;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.gp-footer-paginacion .page-btn {
+  background: #fff;
+  border: 0.5px solid #d1d5db;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: #374151;
+  cursor: pointer;
+  margin: 0 2px;
+  transition: background 0.15s;
+}
+
+.gp-footer-paginacion .page-btn:hover { background: #f3f4f6; }
+
+.gp-footer-paginacion .page-btn.active {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+/* ══ Fix botones de acciones en fila ══ */
+.gp-table th:last-child,
+.gp-table td:last-child {
+  min-width: 200px;
+  white-space: nowrap;
+}
+
+.gp-table td .btn-editar,
+.gp-table td .btn-eliminar,
+.gp-table td button {
+  display: inline-block !important;
+  margin-right: 4px;
+  margin-bottom: 0 !important;
+  white-space: nowrap;
+}
+
+    

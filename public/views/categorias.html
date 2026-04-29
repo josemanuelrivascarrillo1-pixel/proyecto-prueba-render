@@ -1,42 +1,59 @@
-<div class="alert alert-primary mt-4 container text-center">
-    <h2>Gestión de categotias</h2>
+<!-- ============================================
+     VISTA: categorias.html
+     Descripción: Interfaz para gestionar categorías
+     ============================================ -->
+<link rel="stylesheet" href="/css/estilos.css">
+
+<!-- Header -->
+<div class="gp-page-header container mt-4">
+  <h2 class="gp-page-title">Gestión de Categorías</h2>
+  <div class="gp-header-actions">
+    <button class="gp-btn-crear" onclick="mostrarFormulario()">+ Crear Categoría</button>
+    <button class="gp-btn-cancelar d-none" id="btnCancelar" onclick="mostrarTabla()">✕ Cancelar</button>
+  </div>
 </div>
 
-<!-- Botones de acción -->
-<div class="container mb-3 text-end">
-    <button class="btn btn-success" onclick="mostrarFormulario()">Crear categorias</button>
-    <button class="btn btn-secondary d-none" id="btnCancelar" onclick="mostrarTabla()">Cancelar</button>
+<!-- FORMULARIO para crear/editar categorías -->
+<div class="container d-none gp-form-card" id="contenedorFormulario">
+  <form id="formCategorias">
+    <input type="hidden" id="pk_categoria">
+
+    <div class="gp-form-grid">
+      <div class="mb-3">
+        <label class="gp-label">Nombre de la Categoría</label>
+        <input type="text" id="nombre" class="gp-input" required placeholder="Ej: Alimentación">
+      </div>
+    </div>
+
+    <button type="submit" class="gp-btn-submit">Guardar Categoría</button>
+  </form>
 </div>
 
-<!-- FORMULARIO para crear/editar categotias -->
-<div class="container d-none" id="contenedorFormulario">
-    <form id="formCategorias">
-        <!-- Campo oculto para el ID al editar -->
-        <input type="hidden" id="pk_categoria">
-
-        <div class="mb-3">
-            <label class="form-label">Nombre Completo</label>
-            <input type="text" id="nombre" class="form-control" required>
-        </div>
-
-        <button type="submit">Guardar categoria</button>
-    </form>
-</div>
-
-<!-- TABLA para listar categotias -->
+<!-- TABLA para listar categorías -->
 <div class="container mt-4" id="contenedorTabla">
-    <table class="table table-striped">
+
+  <div class="gp-table-header">
+    <span class="gp-table-subtitle">Lista de categorías registradas</span>
+  </div>
+
+  <div class="gp-card">
+    <div class="table-responsive">
+      <table class="table gp-table mb-0">
         <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Fecha_registro</th>
-                <th>estado</th>
-            </tr>
-            <link rel="stylesheet" href="../css/estilos.css">
+          <tr>
+            <th style="width:60px">#</th>
+            <th>Nombre</th>
+            <th>Fecha Registro</th>
+            <th>Estado</th>
+            <th style="width:150px">Acciones</th>
+          </tr>
         </thead>
         <tbody id="tablacategorias"></tbody>
-    </table>
-    <!-- Contenedor para la paginación -->
-    <div id="footer-paginacion"></div>
+      </table>
+    </div>
+
+    <!-- Paginación -->
+    <div class="gp-footer-paginacion" id="footer-paginacion" placeholder=" 1"></div>
+  </div>
+
 </div>
